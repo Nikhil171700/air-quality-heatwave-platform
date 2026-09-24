@@ -1,0 +1,11 @@
+https://air-quality-api.open-meteo.com/v1/air-quality?latitude=17.3850&longitude=78.4867&current=us_aqi,pm10,pm2_5,carbon_monoxide,nitrogen_dioxide,sulphur_dioxide,ozone
+
+
+https://geocoding-api.open-meteo.com/v1/search?name=Hyderabad&count=1&language=en&format=json
+
+
+https://air-quality-api.open-meteo.com/v1/air-quality?latitude=23.7271&longitude=92.7176&current=us_aqi,pm2_5,pm10,carbon_monoxide,nitrogen_dioxide,sulphur_dioxide,ozone
+
+https://nominatim.openstreetmap.org/search?q=Hyderabad&format=json
+
+

@@ -1,0 +1,825 @@
+/* =====================================================
+   HOME PAGE
+===================================================== */
+
+.home-page {
+    min-height: 100vh;
+
+    background: #06151c;
+
+    color: white;
+
+    font-family: Arial, Helvetica, sans-serif;
+
+    padding-bottom: 40px;
+}
+
+
+/* =====================================================
+   HERO
+===================================================== */
+
+.home-hero {
+
+    position: relative;
+
+    min-height: 470px;
+
+    background-image: url("/your-background.jpg");
+
+    background-size: cover;
+
+    background-position: center;
+
+    overflow: hidden;
+}
+
+
+/* DARK OVERLAY */
+
+.home-overlay {
+
+    position: absolute;
+
+    inset: 0;
+
+    background:
+        linear-gradient(
+            90deg,
+            rgba(2, 16, 22, 0.95),
+            rgba(2, 20, 27, 0.70),
+            rgba(2, 20, 27, 0.30)
+        );
+}
+
+
+/* =====================================================
+   HERO CONTENT
+===================================================== */
+
+.home-content {
+
+    position: relative;
+
+    z-index: 2;
+
+    max-width: 1400px;
+
+    margin: auto;
+
+    padding: 60px;
+
+    display: flex;
+
+    justify-content: space-between;
+
+    align-items: center;
+}
+
+
+/* =====================================================
+   LEFT SIDE
+===================================================== */
+
+.home-left {
+
+    max-width: 650px;
+}
+
+
+.home-badge {
+
+    display: inline-block;
+
+    padding: 9px 17px;
+
+    border-radius: 20px;
+
+    background: rgba(40, 190, 65, 0.20);
+
+    border: 1px solid rgba(60, 220, 80, 0.25);
+
+    color: #87e889;
+
+    font-size: 13px;
+
+    margin-bottom: 18px;
+}
+
+
+.home-left h1 {
+
+    font-size: 48px;
+
+    line-height: 1.12;
+
+    margin: 0 0 20px;
+
+    font-weight: 700;
+}
+
+
+.home-left h1 span {
+
+    color: #48d653;
+}
+
+
+.home-left > p {
+
+    font-size: 17px;
+
+    line-height: 1.7;
+
+    color: #d8e0e3;
+
+    margin-bottom: 25px;
+}
+
+
+/* =====================================================
+   LOCATION
+===================================================== */
+
+.home-location {
+
+    width: 410px;
+
+    padding: 13px 18px;
+
+    display: flex;
+
+    align-items: center;
+
+    gap: 14px;
+
+    border-radius: 10px;
+
+    background: rgba(5, 28, 35, 0.85);
+
+    border: 1px solid rgba(255,255,255,0.12);
+}
+
+
+.location-icon {
+
+    font-size: 25px;
+}
+
+
+.home-location small {
+
+    display: block;
+
+    color: #9ba9ad;
+
+    font-size: 11px;
+
+    margin-bottom: 3px;
+}
+
+
+.home-location strong {
+
+    display: block;
+
+    font-size: 17px;
+
+    color: white;
+}
+
+
+.home-location p {
+
+    margin: 3px 0 0;
+
+    color: #9faeb2;
+
+    font-size: 12px;
+}
+
+
+/* DATE */
+
+.home-date {
+
+    width: fit-content;
+
+    margin-top: 12px;
+
+    padding: 10px 16px;
+
+    display: flex;
+
+    align-items: center;
+
+    gap: 9px;
+
+    background: rgba(5, 28, 35, 0.80);
+
+    border-radius: 8px;
+
+    color: #dce3e5;
+
+    font-size: 13px;
+}
+
+
+/* =====================================================
+   AQI CIRCLE
+===================================================== */
+
+.home-right {
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    padding-right: 60px;
+}
+
+
+.aqi-circle {
+
+    width: 300px;
+
+    height: 300px;
+
+    border-radius: 50%;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    background:
+        conic-gradient(
+            #2fc641 0deg 45deg,
+            #dce225 45deg 75deg,
+            #ffc400 75deg 120deg,
+            #ff7022 120deg 160deg,
+            #f23838 160deg 220deg,
+            #7e3baa 220deg 270deg,
+            transparent 270deg 360deg
+        );
+
+    transform: rotate(-45deg);
+
+    box-shadow:
+        0 0 30px rgba(0,0,0,0.4);
+}
+
+
+.aqi-circle::before {
+
+    content: "";
+
+    position: absolute;
+
+    width: 245px;
+
+    height: 245px;
+
+    background: #112a33;
+
+    border-radius: 50%;
+}
+
+
+.aqi-inner {
+
+    position: relative;
+
+    z-index: 2;
+
+    display: flex;
+
+    flex-direction: column;
+
+    align-items: center;
+
+    justify-content: center;
+
+    text-align: center;
+
+    transform: rotate(45deg);
+}
+
+
+.aqi-title {
+
+    color: #b7c4c7;
+
+    font-size: 17px;
+
+    margin-bottom: 5px;
+}
+
+
+.aqi-inner strong {
+
+    font-size: 68px;
+
+    line-height: 1;
+
+    color: #ffb52d;
+}
+
+
+.aqi-status {
+
+    max-width: 180px;
+
+    margin-top: 9px;
+
+    color: #ffb52d;
+
+    font-size: 14px;
+
+    line-height: 1.3;
+}
+
+
+/* =====================================================
+   POLLUTANTS
+===================================================== */
+
+.pollutants {
+
+    max-width: 1400px;
+
+    margin: -30px auto 0;
+
+    position: relative;
+
+    z-index: 5;
+
+    padding: 0 25px;
+
+    display: grid;
+
+    grid-template-columns: repeat(6, 1fr);
+
+    gap: 8px;
+}
+
+
+.pollutant-card {
+
+    min-height: 105px;
+
+    padding: 18px;
+
+    background: #102a33;
+
+    border-radius: 12px;
+
+    display: flex;
+
+    gap: 13px;
+
+    border: 1px solid rgba(255,255,255,0.04);
+
+    transition: 0.25s;
+}
+
+
+.pollutant-card:hover {
+
+    transform: translateY(-4px);
+
+    background: #15333c;
+}
+
+
+.pollutant-icon {
+
+    font-size: 25px;
+
+    padding-top: 2px;
+}
+
+
+.pollutant-card h3 {
+
+    margin: 0 0 8px;
+
+    font-size: 15px;
+
+    font-weight: 500;
+}
+
+
+.pollutant-value {
+
+    display: flex;
+
+    align-items: baseline;
+
+    gap: 7px;
+}
+
+
+.pollutant-value strong {
+
+    font-size: 23px;
+}
+
+
+.pollutant-value span {
+
+    color: #9aa9ad;
+
+    font-size: 10px;
+}
+
+
+.pollutant-card small {
+
+    display: block;
+
+    margin-top: 8px;
+
+    color: #77888d;
+
+    font-size: 10px;
+}
+
+
+/* =====================================================
+   CURRENT QUALITY
+===================================================== */
+
+.quality-section {
+
+    max-width: 1400px;
+
+    margin: 18px auto 0;
+
+    padding: 0 25px;
+}
+
+
+.quality-section {
+
+    background: #10262f;
+
+    border-radius: 15px;
+
+    padding: 25px;
+
+    box-sizing: border-box;
+}
+
+
+.quality-header {
+
+    display: flex;
+
+    justify-content: space-between;
+
+    align-items: center;
+
+    margin-bottom: 20px;
+}
+
+
+.quality-header h2 {
+
+    margin: 0;
+
+    font-size: 19px;
+}
+
+
+.quality-header p {
+
+    margin: 5px 0 0;
+
+    color: #87979b;
+
+    font-size: 13px;
+}
+
+
+/* STATUS */
+
+.quality-status {
+
+    padding: 9px 15px;
+
+    border-radius: 20px;
+
+    background: rgba(40, 200, 60, 0.12);
+
+    color: #45d455;
+
+    font-size: 13px;
+}
+
+
+.quality-status.moderate {
+
+    color: #ffc400;
+
+    background: rgba(255,196,0,0.12);
+}
+
+
+.quality-status.sensitive {
+
+    color: #ff9a20;
+
+    background: rgba(255,120,20,0.12);
+}
+
+
+.quality-status.unhealthy,
+.quality-status.very-unhealthy,
+.quality-status.hazardous {
+
+    color: #ff4848;
+
+    background: rgba(255,60,60,0.12);
+}
+
+
+/* =====================================================
+   QUALITY GRID
+===================================================== */
+
+.quality-grid {
+
+    display: grid;
+
+    grid-template-columns: repeat(7, 1fr);
+
+    gap: 10px;
+}
+
+
+.quality-item {
+
+    background: #0a1d25;
+
+    border-radius: 10px;
+
+    padding: 17px;
+
+    text-align: center;
+}
+
+
+.quality-item span {
+
+    display: block;
+
+    color: #8d9da1;
+
+    font-size: 12px;
+
+    margin-bottom: 9px;
+}
+
+
+.quality-item strong {
+
+    font-size: 23px;
+
+    color: white;
+}
+
+
+/* =====================================================
+   LOADING
+===================================================== */
+
+.home-loading {
+
+    min-height: 100vh;
+
+    background: #06151c;
+
+    color: white;
+
+    display: flex;
+
+    flex-direction: column;
+
+    align-items: center;
+
+    justify-content: center;
+}
+
+
+.loader {
+
+    width: 45px;
+
+    height: 45px;
+
+    border: 4px solid #24434d;
+
+    border-top: 4px solid #40d653;
+
+    border-radius: 50%;
+
+    animation: spin 1s linear infinite;
+
+    margin-bottom: 15px;
+}
+
+
+@keyframes spin {
+
+    from {
+        transform: rotate(0deg);
+    }
+
+    to {
+        transform: rotate(360deg);
+    }
+
+}
+
+
+/* =====================================================
+   ERROR
+===================================================== */
+
+.home-error {
+
+    min-height: 100vh;
+
+    background: #06151c;
+
+    color: white;
+
+    display: flex;
+
+    flex-direction: column;
+
+    align-items: center;
+
+    justify-content: center;
+}
+
+
+.home-error h2 {
+
+    color: #42d650;
+}
+
+
+.home-error p {
+
+    color: #ff5555;
+}
+
+
+/* =====================================================
+   RESPONSIVE
+===================================================== */
+
+@media (max-width: 1100px) {
+
+    .home-content {
+
+        padding: 50px 35px;
+    }
+
+
+    .home-left h1 {
+
+        font-size: 39px;
+    }
+
+
+    .home-right {
+
+        padding-right: 10px;
+    }
+
+
+    .aqi-circle {
+
+        width: 260px;
+
+        height: 260px;
+    }
+
+
+    .aqi-circle::before {
+
+        width: 210px;
+
+        height: 210px;
+    }
+
+
+    .pollutants {
+
+        grid-template-columns: repeat(3, 1fr);
+    }
+
+
+    .quality-grid {
+
+        grid-template-columns: repeat(4, 1fr);
+    }
+
+}
+
+
+@media (max-width: 800px) {
+
+    .home-content {
+
+        flex-direction: column;
+
+        align-items: flex-start;
+
+        gap: 45px;
+    }
+
+
+    .home-right {
+
+        width: 100%;
+
+        padding: 0;
+
+    }
+
+
+    .pollutants {
+
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+
+    .quality-grid {
+
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+}
+
+
+@media (max-width: 500px) {
+
+    .home-content {
+
+        padding: 35px 20px;
+    }
+
+
+    .home-left h1 {
+
+        font-size: 32px;
+    }
+
+
+    .home-location {
+
+        width: auto;
+    }
+
+
+    .pollutants {
+
+        grid-template-columns: 1fr;
+
+        padding: 0 15px;
+    }
+
+
+    .quality-section {
+
+        margin-left: 15px;
+
+        margin-right: 15px;
+
+        padding: 18px;
+    }
+
+
+    .quality-header {
+
+        align-items: flex-start;
+
+        flex-direction: column;
+
+        gap: 15px;
+    }
+
+
+    .quality-grid {
+
+        grid-template-columns: 1fr 1fr;
+    }
+
+}

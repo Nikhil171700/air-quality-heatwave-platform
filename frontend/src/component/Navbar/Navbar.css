@@ -1,0 +1,103 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+.navbar {
+    height: 70px;
+    width: 100%;
+
+    background: #031016;
+
+    display: flex;
+    align-items: center;
+
+    padding: 0 40px;
+
+    color: white;
+}
+
+
+
+.logo {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+
+    min-width: 300px;
+}
+
+.logo-icon {
+    font-size: 32px;
+}
+
+.logo h2 {
+    font-size: 22px;
+}
+
+.logo p {
+    font-size: 11px;
+    color: #aeb8bb;
+}
+
+
+
+.nav-links {
+    display: flex;
+    align-items: center;
+
+    gap: 28px;
+
+    flex: 1;
+}
+
+.nav-links a {
+    color: white;
+    text-decoration: none;
+
+    font-size: 14px;
+
+    padding: 25px 0;
+
+    transition: 0.3s;
+}
+
+.nav-links a:hover {
+    color: #39d353;
+}
+
+
+.nav-right {
+    display: flex;
+    align-items: center;
+
+    gap: 20px;
+}
+
+.theme-btn {
+    background: none;
+    border: none;
+
+    color: white;
+
+    font-size: 22px;
+
+    cursor: pointer;
+}
+
+.login-btn {
+    background: #18a83b;
+
+    color: white;
+
+    text-decoration: none;
+
+    padding: 11px 28px;
+
+    border-radius: 7px;
+}
+
+.login-btn:hover {
+    background: #12872f;
+}

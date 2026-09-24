@@ -1,0 +1,42 @@
+
+        {/* Selected location */}
+
+        {selectedPlace && (
+
+            <div className="selected-place">
+
+                <h3>Selected Location</h3>
+
+
+                <p>
+                    <strong>Place:</strong>{" "}
+                    {selectedPlace.name || "N/A"}
+                </p>
+
+
+                <p>
+                    <strong>State:</strong>{" "}
+                    {selectedPlace.address?.state || "N/A"}
+                </p>
+
+
+                <p>
+                    <strong>Country:</strong>{" "}
+                    {selectedPlace.address?.country || "N/A"}
+                </p>
+
+
+                <p>
+                    <strong>Latitude:</strong>{" "}
+                    {selectedPlace.lat}
+                </p>
+
+
+                <p>
+                    <strong>Longitude:</strong>{" "}
+                    {selectedPlace.lon}
+                </p>
+
+            </div>
+
+        )}

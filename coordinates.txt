@@ -1,0 +1,549 @@
+
+
+<!-- 
+step="any" is an HTML input setting that tells the browser:
+    <input
+        type="number"
+        id="startLat"
+        placeholder="Example: 17.4401"
+        step="any"
+    >
+
+
+    <label>Longitude</label>
+
+    <input
+        type="number"
+        id="startLon"
+        placeholder="Example: 78.3489"
+        step="any" -->
+    >
+<!-- <!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Delivery Route Optimization</title>
+
+    <link
+        rel="stylesheet"
+        href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
+    >
+
+    <style>
+
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+            background: #f4f6f8;
+        }
+
+        .container {
+            width: 420px;
+            margin: 40px auto;
+            padding: 25px;
+            background: white;
+            border-radius: 12px;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.12);
+        }
+
+        h1 {
+            text-align: center;
+            margin-bottom: 25px;
+        }
+
+        h3 {
+            margin-top: 20px;
+            margin-bottom: 10px;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 5px;
+            font-weight: bold;
+        }
+
+        input,
+        select {
+            width: 100%;
+            padding: 12px;
+            margin-bottom: 12px;
+            border: 1px solid #ccc;
+            border-radius: 6px;
+            font-size: 15px;
+        }
+
+        input:focus,
+        select:focus {
+            outline: none;
+            border-color: #007bff;
+        }
+
+        button {
+            width: 100%;
+            padding: 13px;
+            margin-top: 10px;
+            border: none;
+            border-radius: 6px;
+            background: #007bff;
+            color: white;
+            font-size: 16px;
+            font-weight: bold;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background: #0056b3;
+        }
+
+        #result {
+            margin-top: 20px;
+            text-align: center;
+            line-height: 1.8;
+        }
+
+        #map {
+            width: 100%;
+            height: 600px;
+            margin-top: 30px;
+            display: none;
+        }
+
+        .info {
+            padding: 10px;
+            background: #f1f7ff;
+            border-radius: 6px;
+            font-size: 14px;
+        }
+
+    </style>
+
+</head>
+
+
+<body>
+
+
+<div class="container">
+
+    <h1>Delivery Route Optimization</h1>
+
+
+    <h3>Starting Location</h3>
+
+    <label>Latitude</label>
+
+    <input
+        type="number"
+        id="startLat"
+        placeholder="Example: 17.4401"
+        step="any"
+    >
+
+
+    <label>Longitude</label>
+
+    <input
+        type="number"
+        id="startLon"
+        placeholder="Example: 78.3489"
+        step="any"
+    >
+
+
+
+    <h3>Ending Location</h3>
+
+    <label>Latitude</label>
+
+    <input
+        type="number"
+        id="endLat"
+        placeholder="Example: 17.2403"
+        step="any"
+    >
+
+
+    <label>Longitude</label>
+
+    <input
+        type="number"
+        id="endLon"
+        placeholder="Example: 78.4294"
+        step="any"
+    >
+
+
+
+    <h3>Select Vehicle</h3>
+
+    <select id="vehicle">
+
+        <option value="">
+            -- Select Vehicle --
+        </option>
+
+        <option value="bike">
+            🏍️ Bike
+        </option>
+
+        <option value="car">
+            🚗 Car
+        </option>
+
+    </select>
+
+
+    <div class="info">
+
+        🏍️ Bike → avoids motorway-class roads
+
+        <br>
+
+        🚗 Car → normal driving route
+
+    </div>
+
+
+    <button onclick="findRoute()">
+        Find Optimal Route
+    </button>
+
+
+    <div id="result"></div>
+
+</div>
+
+
+<div id="map"></div>
+
+
+
+<script
+    src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js">
+</script>
+
+
+
+<script>
+
+let map;
+
+let routeLine;
+
+let startMarker;
+
+let endMarker;
+
+
+
+function findRoute() {
+
+
+    // Get values
+
+    const startLat =
+        parseFloat(document.getElementById("startLat").value);
+
+    const startLon =
+        parseFloat(document.getElementById("startLon").value);
+
+    const endLat =
+        parseFloat(document.getElementById("endLat").value);
+
+    const endLon =
+        parseFloat(document.getElementById("endLon").value);
+
+    const vehicle =
+        document.getElementById("vehicle").value;
+
+
+
+    // Validate
+
+    if (
+        isNaN(startLat) ||
+        isNaN(startLon) ||
+        isNaN(endLat) ||
+        isNaN(endLon)
+    ) {
+
+        alert("Please enter all coordinates.");
+
+        return;
+    }
+
+
+    if (vehicle === "") {
+
+        alert("Please select Bike or Car.");
+
+        return;
+    }
+
+
+
+    // Show map
+
+    document.getElementById("map").style.display = "block";
+
+
+
+    // Create map
+
+    if (!map) {
+
+        map = L.map("map");
+
+        L.tileLayer(
+            "https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png",
+            {
+                attribution:
+                    "&copy; OpenStreetMap contributors"
+            }
+        ).addTo(map);
+
+    }
+
+
+
+    // Remove old route
+
+    if (routeLine) {
+
+        map.removeLayer(routeLine);
+
+    }
+
+
+    if (startMarker) {
+
+        map.removeLayer(startMarker);
+
+    }
+
+
+    if (endMarker) {
+
+        map.removeLayer(endMarker);
+
+    }
+
+
+
+    // -----------------------------------------
+    // CREATE OSRM URL
+    // -----------------------------------------
+
+    let url =
+        `https://router.project-osrm.org/route/v1/driving/` +
+        `${startLon},${startLat};${endLon},${endLat}` +
+        `?overview=full&geometries=geojson`;
+
+
+
+    // -----------------------------------------
+    // BIKE ROUTE
+    // -----------------------------------------
+
+    if (vehicle === "bike") {
+
+        url =
+            `https://router.project-osrm.org/route/v1/driving/` +
+            `${startLon},${startLat};${endLon},${endLat}` +
+            `?overview=full&geometries=geojson&exclude=motorway`;
+
+    }
+
+
+
+    document.getElementById("result").innerHTML =
+        "Finding route...";
+
+
+
+    // -----------------------------------------
+    // CALL API
+    // -----------------------------------------
+
+    fetch(url)
+
+        .then(response => response.json())
+
+        .then(data => {
+
+
+            if (data.code !== "Ok") {
+
+                document.getElementById("result").innerHTML =
+                    "❌ Route could not be found.";
+
+                return;
+            }
+
+
+            const route = data.routes[0];
+
+
+
+            // -----------------------------------------
+            // ROUTE GEOMETRY
+            // -----------------------------------------
+
+            const coordinates =
+                route.geometry.coordinates.map(
+                    point => [point[1], point[0]]
+                );
+
+
+
+            // -----------------------------------------
+            // DRAW ROUTE
+            // -----------------------------------------
+
+            routeLine = L.polyline(
+                coordinates,
+                {
+                    weight: 6
+                }
+            ).addTo(map);
+
+
+
+            // -----------------------------------------
+            // START MARKER
+            // -----------------------------------------
+
+            startMarker =
+                L.marker([startLat, startLon])
+                .addTo(map)
+                .bindPopup("📍 Starting Location");
+
+
+
+            // -----------------------------------------
+            // END MARKER
+            // -----------------------------------------
+
+            endMarker =
+                L.marker([endLat, endLon])
+                .addTo(map)
+                .bindPopup("📍 Ending Location");
+
+
+
+            // -----------------------------------------
+            // FIT MAP
+            // -----------------------------------------
+
+            map.fitBounds(
+                routeLine.getBounds()
+            );
+
+
+
+            // -----------------------------------------
+            // DISTANCE
+            // -----------------------------------------
+
+            const distance =
+                (route.distance / 1000).toFixed(2);
+
+
+
+            // -----------------------------------------
+            // TIME
+            // -----------------------------------------
+
+            const totalMinutes =
+                Math.round(route.duration / 60);
+
+
+            const hours =
+                Math.floor(totalMinutes / 60);
+
+
+            const minutes =
+                totalMinutes % 60;
+
+
+            let timeText;
+
+
+            if (hours > 0) {
+
+                timeText =
+                    `${hours} hr ${minutes} min`;
+
+            } else {
+
+                timeText =
+                    `${minutes} min`;
+
+            }
+
+
+
+            // -----------------------------------------
+            // VEHICLE NAME
+            // -----------------------------------------
+
+            const vehicleName =
+                vehicle === "bike"
+                ? "🏍️ Bike"
+                : "🚗 Car";
+
+
+
+            // -----------------------------------------
+            // RESULT
+            // -----------------------------------------
+
+            document.getElementById("result").innerHTML =
+
+                `<strong>✅ Route Found</strong>
+
+                <br>
+
+                Vehicle:
+                ${vehicleName}
+
+                <br>
+
+                Distance:
+                ${distance} km
+
+                <br>
+
+                Estimated Time:
+                ${timeText}`;
+
+
+        })
+
+
+        .catch(error => {
+
+            console.error(error);
+
+            document.getElementById("result").innerHTML =
+                "❌ Unable to connect to routing service.";
+
+        });
+
+}
+
+</script>
+
+
+</body>
+
+</html> -->
