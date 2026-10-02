@@ -108,7 +108,7 @@ function Home() {
             const response = await fetch(
                 `https://api.geoapify.com/v1/geocode/search?text=${encodeURIComponent(
                     location
-                )}&limit=1&format=json&apiKey=71d2fcb3d32e40aca38fd357505e2cee`
+                )}&limit=1&format=json&apiKey=`
             );
 
 
